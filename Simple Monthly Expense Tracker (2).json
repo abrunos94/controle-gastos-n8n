@@ -13,8 +13,8 @@
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.2,
       "position": [
-        256,
-        928
+        -48,
+        1240
       ],
       "webhookId": "b35a4e71-6057-42d7-bb56-d42e80a76908",
       "credentials": {
@@ -63,8 +63,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        480,
-        928
+        176,
+        1240
       ]
     },
     {
@@ -262,6 +262,78 @@
               },
               "renameOutput": true,
               "outputKey": "rel_fixos"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "c09108c5-2a6f-4933-a2bd-4509849efe05",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/addaction",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "addaction"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "id-10",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/carteira",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "carteira"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "id-11",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/bag",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "bag"
             }
           ]
         },
@@ -272,8 +344,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.4,
       "position": [
-        704,
-        688
+        400,
+        928
       ]
     },
     {
@@ -325,7 +397,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        928,
+        624,
         496
       ]
     },
@@ -372,7 +444,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        928,
+        624,
         688
       ]
     },
@@ -437,7 +509,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        928,
+        624,
         880
       ]
     },
@@ -534,7 +606,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        1152,
+        848,
         496
       ],
       "credentials": {
@@ -622,7 +694,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        1152,
+        848,
         688
       ],
       "credentials": {
@@ -737,7 +809,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        1152,
+        848,
         880
       ],
       "credentials": {
@@ -770,8 +842,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        928,
-        1120
+        624,
+        1072
       ],
       "alwaysOutputData": true,
       "executeOnce": true,
@@ -805,8 +877,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        1152,
-        1120
+        848,
+        1072
       ],
       "alwaysOutputData": true,
       "executeOnce": true,
@@ -840,8 +912,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        1376,
-        1120
+        1072,
+        1072
       ],
       "alwaysOutputData": true,
       "executeOnce": true,
@@ -863,7 +935,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        1376,
+        1072,
         496
       ],
       "webhookId": "4beb0e8d-5357-4589-b80d-ec28a0332d14",
@@ -885,7 +957,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        1376,
+        1072,
         688
       ],
       "webhookId": "7e8b1c1f-38e5-4ff6-8fc3-ad28bee991f2",
@@ -907,7 +979,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        1376,
+        1072,
         880
       ],
       "webhookId": "ce9b214b-f0ca-4fac-bc24-46c1ea475fae",
@@ -929,8 +1001,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        1776,
-        1120
+        1520,
+        1072
       ],
       "webhookId": "dc78c78f-0b7d-4576-9737-bf0f202a25d3",
       "credentials": {
@@ -951,8 +1023,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        656,
-        1072
+        400,
+        1408
       ],
       "webhookId": "b8a712a2-e66e-475f-a7fc-481a43e7e64f",
       "credentials": {
@@ -987,8 +1059,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        928,
-        1632
+        624,
+        1264
       ]
     },
     {
@@ -1019,8 +1091,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        1152,
-        1632
+        848,
+        1264
       ],
       "credentials": {
         "googleSheetsOAuth2Api": {
@@ -1040,8 +1112,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        1376,
-        1632
+        1072,
+        1264
       ],
       "webhookId": "c943a0bb-32dc-472f-a2cb-a711ed584c5b",
       "credentials": {
@@ -1094,8 +1166,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        928,
-        304
+        624,
+        1456
       ],
       "webhookId": "ed8dc8bb-0a2b-4c90-a8d5-7375f64c5a0a",
       "credentials": {
@@ -1112,15 +1184,353 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1584,
-        1120
+        1296,
+        1072
       ],
       "id": "86fd743d-8022-4fcc-a396-82f404e95cf6",
       "name": "Jarvis Intelligence",
       "executeOnce": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "id-1",
+              "name": "user",
+              "value": "={{ $json.message.from.first_name }}",
+              "type": "string"
+            },
+            {
+              "id": "id-2",
+              "name": "ticker",
+              "value": "={{ $json.message.text.trim().split(/\\s+/).slice(1, -2).join(' ') }}",
+              "type": "string"
+            },
+            {
+              "id": "id-3",
+              "name": "quantidade",
+              "value": "={{ $json.message.text.trim().split(/\\s+/).slice(-2, -1)[0] }}",
+              "type": "string"
+            },
+            {
+              "id": "id-4",
+              "name": "preco_medio",
+              "value": "={{ $json.message.text.trim().split(/\\s+/).slice(-1)[0] }}",
+              "type": "string"
+            },
+            {
+              "id": "id-5",
+              "name": "date",
+              "value": "={{ $now.format('yyyy-MM-dd') }}",
+              "type": "string"
+            },
+            {
+              "id": "id-6",
+              "name": "chat_id",
+              "value": "={{ $json.message.chat.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d3a3a844-962e-42ff-b4d6-3ee14af55699",
+      "name": "Parse Investments Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        624,
+        1792
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y",
+          "mode": "list",
+          "cachedResultName": "Gaston8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1372227686,
+          "mode": "list",
+          "cachedResultName": "investments",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y/edit#gid=1372227686"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ticker",
+              "displayName": "ticker",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "quantidade",
+              "displayName": "quantidade",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "preco_medio",
+              "displayName": "preco_medio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "472fa274-30b2-4546-a2dd-93a2dca3e38d",
+      "name": "Store Investments Data",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        832,
+        1792
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SKztpgJ8ZUEFeaBw",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "id-1",
+              "name": "chat_id",
+              "value": "={{ $json.message.chat.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0773b56b-40fc-413a-944d-143e98d496ed",
+      "name": "Parse Investments Data for Report",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        624,
+        1968
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y",
+          "cachedResultName": "Gaston8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "1372227686",
+          "cachedResultName": "investments",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y/edit#gid=1372227686"
+        },
+        "options": {}
+      },
+      "id": "3f1acc78-aad5-4c6f-abc2-3469e2e43ef9",
+      "name": "Read Investments Data",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        832,
+        1968
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SKztpgJ8ZUEFeaBw",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://brapi.dev/api/quote/{{ $json.ticker.replace('=', '') }}?token=jDghH1HCXonjQhLun3a8ca",
+        "options": {}
+      },
+      "id": "d6c0539d-1697-410e-a8d9-599f22a22f6b",
+      "name": "Fetch Current Stock Price",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1056,
+        1968
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const investmentsData = $('Read Investments Data').all(); const apiData = $('Fetch Current Stock Price').all(); let report = '📊 **CARTEIRA DE INVESTIMENTOS**\\n\\n'; let totalInvested = 0; let totalCurrent = 0; for (let i = 0; i < investmentsData.length; i++) { const investment = investmentsData[i].json; const api = apiData[i].json; const ticker = investment.ticker; const quantidade = parseFloat(investment.quantidade || 0); const precoMedio = parseFloat(investment.preco_medio || 0); const precoAtual = api.results && api.results[0] ? parseFloat(api.results[0].regularMarketPrice || 0) : 0; const valorInvestido = quantidade * precoMedio; const valorAtual = quantidade * precoAtual; const lucro = valorAtual - valorInvestido; const percentual = valorInvestido > 0 ? ((lucro / valorInvestido) * 100).toFixed(2) : 0; const emoji = lucro >= 0 ? '🟢' : '🔴'; totalInvested += valorInvestido; totalCurrent += valorAtual; report += `${emoji} **${ticker}**\\n`; report += `  Qtd: ${quantidade} | PM: R$ ${precoMedio.toFixed(2)}\\n`; report += `  Atual: R$ ${precoAtual.toFixed(2)}\\n`; report += `  L/P: R$ ${lucro.toFixed(2)} (${percentual}%)\\n\\n`; } const totalLucro = totalCurrent - totalInvested; const totalPercentual = totalInvested > 0 ? ((totalLucro / totalInvested) * 100).toFixed(2) : 0; const totalEmoji = totalLucro >= 0 ? '🟢' : '🔴'; report += '━━━━━━━━━━━━━━━━━━\\n'; report += `💰 **Total Investido**: R$ ${totalInvested.toFixed(2)}\\n`; report += `📈 **Valor Atual**: R$ ${totalCurrent.toFixed(2)}\\n`; report += `${totalEmoji} **Resultado**: R$ ${totalLucro.toFixed(2)} (${totalPercentual}%)`; return [{ json: { report } }];"
+      },
+      "id": "715b30d3-c36e-46a2-a7d7-6f723f1338a0",
+      "name": "Calculate Portfolio Performance",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1264,
+        1968
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').first().json.message.chat.id }}",
+        "text": "={{ $json.report }}",
+        "additionalFields": {}
+      },
+      "id": "b913218e-8736-4963-8b1c-945bce39990d",
+      "name": "Send Portfolio Report",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1504,
+        1968
+      ],
+      "webhookId": "a16edb03-5a06-4365-a954-072fb5591739",
+      "credentials": {
+        "telegramApi": {
+          "id": "cL4aJvUu1BeuSdaP",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Parse Investments Data').item.json.chat_id }}",
+        "text": "=✅ Investimento registrado com sucesso!\n📊 Ticker: {{ $('Parse Investments Data').item.json.ticker }}\n📈 Quantidade: {{ $('Parse Investments Data').item.json.quantidade }}\n💰 Preço Médio: R$ {{ $('Parse Investments Data').item.json.preco_medio }}",
+        "additionalFields": {}
+      },
+      "id": "bb3db809-fc0f-4e3c-9eb6-42e711e1139b",
+      "name": "Send Investment Confirmation",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1056,
+        1792
+      ],
+      "webhookId": "2ca60a13-afa8-429f-992f-2631f4b6301d",
+      "credentials": {
+        "telegramApi": {
+          "id": "cL4aJvUu1BeuSdaP",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').first().json.message.chat.id }}",
+        "text": "💼 Jarvis Bag - Gestão de Ativos\nEscolha uma operação:",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "➕ Registrar Compra",
+                    "additionalFields": {
+                      "callback_data": "/addaction"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "📈 Ver Rendimentos",
+                    "additionalFields": {
+                      "callback_data": "/carteira"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {}
+      },
+      "id": "23f9311e-b64c-41a9-81b2-3f0cf1afa0ec",
+      "name": "Investments Menu Buttons",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        624,
+        1616
+      ],
+      "webhookId": "efc0284c-8a8b-44d0-a2bc-b07ee92fac63",
+      "credentials": {
+        "telegramApi": {
+          "id": "cL4aJvUu1BeuSdaP",
+          "name": "Telegram account"
+        }
+      },
+      "disabled": true
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Telegram Trigger": [
+      {
+        "json": {
+          "update_id": 757537142,
+          "message": {
+            "message_id": 547,
+            "from": {
+              "id": 6038722894,
+              "is_bot": false,
+              "first_name": "Alex",
+              "last_name": "Bruno",
+              "language_code": "pt-br"
+            },
+            "chat": {
+              "id": 6038722894,
+              "first_name": "Alex",
+              "last_name": "Bruno",
+              "type": "private"
+            },
+            "date": 1771006366,
+            "text": "/carteira",
+            "entities": [
+              {
+                "offset": 0,
+                "length": 9,
+                "type": "bot_command"
+              }
+            ]
+          }
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
   "connections": {
     "Telegram Trigger": {
       "main": [
@@ -1205,6 +1615,27 @@
         [
           {
             "node": "Read Income Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Parse Investments Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Parse Investments Data for Report",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Investments Menu Buttons",
             "type": "main",
             "index": 0
           }
@@ -1342,13 +1773,79 @@
           }
         ]
       ]
+    },
+    "Parse Investments Data": {
+      "main": [
+        [
+          {
+            "node": "Store Investments Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store Investments Data": {
+      "main": [
+        [
+          {
+            "node": "Send Investment Confirmation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Investments Data for Report": {
+      "main": [
+        [
+          {
+            "node": "Read Investments Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Investments Data": {
+      "main": [
+        [
+          {
+            "node": "Fetch Current Stock Price",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Current Stock Price": {
+      "main": [
+        [
+          {
+            "node": "Calculate Portfolio Performance",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculate Portfolio Performance": {
+      "main": [
+        [
+          {
+            "node": "Send Portfolio Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": true,
   "settings": {
     "availableInMCP": false
   },
-  "versionId": "78952ecd-8fb5-4afe-9420-9e7cbba37917",
+  "versionId": "c90d7368-96a7-41e8-8eb6-96ce02d3fe15",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "094277133d60709baf16ac10da2002ea27ec68dbcb518eef557fa2f96ae077ed"
