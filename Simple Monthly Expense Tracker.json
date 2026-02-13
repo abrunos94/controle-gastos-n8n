@@ -1,0 +1,1358 @@
+{
+  "name": "Simple Monthly Expense Tracker",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "68fecf5b-6b1e-4794-b95f-628c0337eecf",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        256,
+        928
+      ],
+      "webhookId": "b35a4e71-6057-42d7-bb56-d42e80a76908",
+      "credentials": {
+        "telegramApi": {
+          "id": "cL4aJvUu1BeuSdaP",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "id-1",
+              "leftValue": "={{ $json.message.from.id }}",
+              "rightValue": 6038722894,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "id-2",
+              "leftValue": "={{ $json.message.from.id }}",
+              "operator": {
+                "type": "number",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "id": "1297ffc8-70bd-439e-985b-cc9b8a51e471",
+      "name": "Validate User (Alex or Barbara)",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        480,
+        928
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/receita",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "7de14803-9101-4400-a7f5-d07bd22f57f0"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "receita"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/gastofixo",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "da270585-78dd-4d42-975f-6fd2831ec851"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "gastofixo"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/gasto",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "26d7fb9c-951f-48d3-98ec-813fa1cc6e8c"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "gasto"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/relatorio",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "bb1679bb-64f9-460b-a987-fbb016bb54e2"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "relatorio"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/categoria",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "1a787e60-15c8-4393-9b57-7ad80ca57097"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "categoria"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "810e323f-05f3-415e-ae2c-d508bcee74f2",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/start",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "start"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "a99f330a-bb26-432a-a5f9-fce513c27531",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/rel_renda",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "rel_renda"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "4be1b82b-f094-46ab-861b-bfb42d13c0f4",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/rel_fixos",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "rel_fixos"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f8d82531-9734-4edb-b4bc-d1f8791917de",
+      "name": "Route by Command Type",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        704,
+        688
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "id-1",
+              "name": "user",
+              "value": "={{ $json.message.from.first_name }}",
+              "type": "string"
+            },
+            {
+              "id": "id-2",
+              "name": "value",
+              "value": "={{ $json.message.text.split(' ')[1] }}",
+              "type": "string"
+            },
+            {
+              "id": "id-3",
+              "name": "date",
+              "value": "={{ $json.message.text.split(' ')[2] || $now.toFormat('yyyy-MM-dd') }}",
+              "type": "string"
+            },
+            {
+              "id": "id-4",
+              "name": "month",
+              "value": "={{ $now.format('yyyy-MM') }}",
+              "type": "string"
+            },
+            {
+              "id": "id-5",
+              "name": "chat_id",
+              "value": "={{ $json.message.chat.id }}",
+              "type": "string"
+            },
+            {
+              "id": "id-6",
+              "name": "formatted_date",
+              "value": "={{ $json.message.text.split(' ')[2] || $now.toFormat('dd/MM/yyyy') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6f5bafed-06ad-4c8d-8407-848dab898238",
+      "name": "Parse Income Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        928,
+        496
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "id-1",
+              "name": "user",
+              "value": "={{ $json.message.from.first_name }}",
+              "type": "string"
+            },
+            {
+              "id": "id-2",
+              "name": "category",
+              "value": "={{ $json.message.text.split(' ')[1] }}",
+              "type": "string"
+            },
+            {
+              "id": "id-3",
+              "name": "value",
+              "value": "={{ $json.message.text.split(' ')[2] }}",
+              "type": "string"
+            },
+            {
+              "id": "id-4",
+              "name": "month",
+              "value": "={{ $now.format('yyyy-MM') }}",
+              "type": "string"
+            },
+            {
+              "id": "id-5",
+              "name": "chat_id",
+              "value": "={{ $json.message.chat.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "dc732d9d-04f5-4a30-8ef3-54a703d13d00",
+      "name": "Parse Fixed Expense Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        928,
+        688
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "id-1",
+              "name": "user",
+              "value": "={{ $json.message.from.first_name }}",
+              "type": "string"
+            },
+            {
+              "id": "id-2",
+              "name": "description",
+              "value": "={{ $json.message.text.split(' ').slice(1, -2).join(' ') }}",
+              "type": "string"
+            },
+            {
+              "id": "id-3",
+              "name": "value",
+              "value": "={{ $json.message.text.split(' ').slice(-2)[0] }}",
+              "type": "string"
+            },
+            {
+              "id": "id-4",
+              "name": "category",
+              "value": "={{ $json.message.text.split(' ').slice(-1)[0] }}",
+              "type": "string"
+            },
+            {
+              "id": "id-5",
+              "name": "date",
+              "value": "={{ $now.format('yyyy-MM-dd') }}",
+              "type": "string"
+            },
+            {
+              "id": "id-6",
+              "name": "month",
+              "value": "={{ $now.format('yyyy-MM') }}",
+              "type": "string"
+            },
+            {
+              "id": "id-7",
+              "name": "chat_id",
+              "value": "={{ $json.message.chat.id }}",
+              "type": "string"
+            },
+            {
+              "id": "id-8",
+              "name": "formatted_date",
+              "value": "={{ $now.toFormat('dd/MM/yyyy') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1a6bb98a-9222-4837-9ce9-5fbbbff77f4e",
+      "name": "Parse Daily Expense Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        928,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y",
+          "mode": "list",
+          "cachedResultName": "Gaston8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Renda",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "user",
+              "displayName": "user",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "value",
+              "displayName": "value",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "month",
+              "displayName": "month",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "chat_id",
+              "displayName": "chat_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "formatted_date",
+              "displayName": "formatted_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "e6536594-42ad-4121-b608-4b8515892f38",
+      "name": "Store Income",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1152,
+        496
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SKztpgJ8ZUEFeaBw",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y",
+          "mode": "list",
+          "cachedResultName": "Gaston8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 665107282,
+          "mode": "list",
+          "cachedResultName": "Fixed_Expenses",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y/edit#gid=665107282"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "user",
+              "displayName": "user",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "category",
+              "displayName": "category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "value",
+              "displayName": "value",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "month",
+              "displayName": "month",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "chat_id",
+              "displayName": "chat_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "f3ca131d-ceb7-4fe5-a07b-6fb52f9d9bb9",
+      "name": "Store Fixed Expense",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1152,
+        688
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SKztpgJ8ZUEFeaBw",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y",
+          "mode": "list",
+          "cachedResultName": "Gaston8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 334556370,
+          "mode": "list",
+          "cachedResultName": "Daily_Expenses",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y/edit#gid=334556370"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "user",
+              "displayName": "user",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "description",
+              "displayName": "description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "value",
+              "displayName": "value",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "category",
+              "displayName": "category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "month",
+              "displayName": "month",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "chat_id",
+              "displayName": "chat_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "formatted_date",
+              "displayName": "formatted_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "9418de4a-a462-442a-a2f1-2e5636562eb2",
+      "name": "Store Daily Expense",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1152,
+        880
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SKztpgJ8ZUEFeaBw",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y",
+          "mode": "list",
+          "cachedResultName": "Gaston8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Renda",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y/edit#gid=0"
+        },
+        "options": {}
+      },
+      "id": "106aefc6-4747-4a00-bd9f-c21835776fff",
+      "name": "Read Income Data",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        928,
+        1120
+      ],
+      "alwaysOutputData": true,
+      "executeOnce": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SKztpgJ8ZUEFeaBw",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y",
+          "mode": "list",
+          "cachedResultName": "Gaston8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 665107282,
+          "mode": "list",
+          "cachedResultName": "Fixed_Expenses",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y/edit#gid=665107282"
+        },
+        "options": {}
+      },
+      "id": "f805e1a7-2dea-41d0-b843-7f4a7c428c02",
+      "name": "Read Fixed Expenses Data",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1152,
+        1120
+      ],
+      "alwaysOutputData": true,
+      "executeOnce": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SKztpgJ8ZUEFeaBw",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y",
+          "mode": "list",
+          "cachedResultName": "Gaston8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 334556370,
+          "mode": "list",
+          "cachedResultName": "Daily_Expenses",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1F_3-c-SyUe_FGhHttM3TTTWdkm216X-q4f05eM_0R1Y/edit#gid=334556370"
+        },
+        "options": {}
+      },
+      "id": "d64dd92b-33b5-4844-a5a2-bbe179f64407",
+      "name": "Read Daily Expenses Data",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1376,
+        1120
+      ],
+      "alwaysOutputData": true,
+      "executeOnce": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SKztpgJ8ZUEFeaBw",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chat_id }}",
+        "text": "=✅ Receita registrada com sucesso!\n💰 Valor: R$ {{ $json.value }}\n📅 Data: {{ $json.formatted_date }}",
+        "additionalFields": {}
+      },
+      "id": "57bfedc0-81de-45eb-89b8-899715398729",
+      "name": "Send Income Confirmation",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1376,
+        496
+      ],
+      "webhookId": "4beb0e8d-5357-4589-b80d-ec28a0332d14",
+      "credentials": {
+        "telegramApi": {
+          "id": "cL4aJvUu1BeuSdaP",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Parse Fixed Expense Data').item.json.chat_id }}",
+        "text": "=✅ Gasto fixo registrado com sucesso!\n📋 Categoria: {{ $('Parse Fixed Expense Data').item.json.category }}\n💰 Valor: R$ {{ $('Parse Fixed Expense Data').item.json.value }}",
+        "additionalFields": {}
+      },
+      "id": "c3fb77c5-bd89-408a-a81a-fe30acf7ff55",
+      "name": "Send Fixed Expense Confirmation",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1376,
+        688
+      ],
+      "webhookId": "7e8b1c1f-38e5-4ff6-8fc3-ad28bee991f2",
+      "credentials": {
+        "telegramApi": {
+          "id": "cL4aJvUu1BeuSdaP",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chat_id }}",
+        "text": "=✅ Gasto diário registrado com sucesso!\n📝 Descrição: {{ $json.description }}\n💰 Valor: R$ {{ $json.value }}\n📂 Categoria: {{ $json.category }}\n📅 Data: {{ $json.formatted_date }}",
+        "additionalFields": {}
+      },
+      "id": "3ae18a89-a97a-47ed-a504-7283156d620f",
+      "name": "Send Daily Expense Confirmation",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1376,
+        880
+      ],
+      "webhookId": "ce9b214b-f0ca-4fac-bc24-46c1ea475fae",
+      "credentials": {
+        "telegramApi": {
+          "id": "cL4aJvUu1BeuSdaP",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').first().json.message.chat.id }}",
+        "text": "={{ $json.report }}",
+        "additionalFields": {}
+      },
+      "id": "9157dc3f-7e2f-4527-80ba-4c233ef1b7d4",
+      "name": "Send Financial Report",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1776,
+        1120
+      ],
+      "webhookId": "dc78c78f-0b7d-4576-9737-bf0f202a25d3",
+      "credentials": {
+        "telegramApi": {
+          "id": "cL4aJvUu1BeuSdaP",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message.chat.id }}",
+        "text": "❌ Acesso negado! Apenas Alex e Barbara podem usar este bot.",
+        "additionalFields": {}
+      },
+      "id": "82ec6b6f-fe5c-4929-94d6-4d9817e57459",
+      "name": "Send Unauthorized Message",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        656,
+        1072
+      ],
+      "webhookId": "b8a712a2-e66e-475f-a7fc-481a43e7e64f",
+      "credentials": {
+        "telegramApi": {
+          "id": "cL4aJvUu1BeuSdaP",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "id-1",
+              "name": "category_name",
+              "value": "={{ $json.message.text.split(' ')[1] }}",
+              "type": "string"
+            },
+            {
+              "id": "id-2",
+              "name": "chat_id",
+              "value": "={{ $json.message.chat.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "163779e2-1eab-478f-9c2e-56621540b884",
+      "name": "Parse New Category",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        928,
+        1632
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "<__PLACEHOLDER_VALUE__Select Spreadsheet__>"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Categories"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "5f35e056-7cc5-4ee9-aef8-323059ad7096",
+      "name": "Store New Category",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1152,
+        1632
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SKztpgJ8ZUEFeaBw",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Parse New Category').item.json.chat_id }}",
+        "text": "=✅ Nova categoria adicionada com sucesso!\n📂 Categoria: {{ $('Parse New Category').item.json.category_name }}",
+        "additionalFields": {}
+      },
+      "id": "b93de5ef-dd7c-4294-afba-b3c35855b5c4",
+      "name": "Send Category Confirmation",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1376,
+        1632
+      ],
+      "webhookId": "c943a0bb-32dc-472f-a2cb-a711ed584c5b",
+      "credentials": {
+        "telegramApi": {
+          "id": "cL4aJvUu1BeuSdaP",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message.chat.id }}",
+        "text": "=📊 **Painel Jarvis - Relatórios Rápidos**\n\nEscolha o que deseja visualizar agora:",
+        "replyMarkup": "replyKeyboard",
+        "replyKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "/relatorio",
+                    "additionalFields": {}
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "/rel_renda",
+                    "additionalFields": {}
+                  },
+                  {
+                    "text": "/rel_fixos",
+                    "additionalFields": {}
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "replyKeyboardOptions": {
+          "resize_keyboard": true
+        },
+        "additionalFields": {}
+      },
+      "id": "432647af-62fd-4c10-9a98-bf4c7a43e734",
+      "name": "Initial Menu Buttons",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        928,
+        304
+      ],
+      "webhookId": "ed8dc8bb-0a2b-4c90-a8d5-7375f64c5a0a",
+      "credentials": {
+        "telegramApi": {
+          "id": "cL4aJvUu1BeuSdaP",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// 1. Pega o comando e o mês\nconst comando = $('Telegram Trigger').first().json.message.text.toLowerCase();\nconst mesAtual = new Date().toISOString().slice(0, 7); \n\n// 2. Busca os dados de cada nó individualmente\nconst dadosRenda = $('Read Income Data').all();\nconst dadosFixos = $('Read Fixed Expenses Data').all();\nconst dadosDiarios = $('Read Daily Expenses Data').all();\n\nlet totalRenda = 0, totalFixo = 0, totalDiario = 0;\nlet listaFixosTexto = \"\", listaDiariosTexto = \"\";\nconst somaFixa = {}, somaDiaria = {};\n\n// SOMA RENDA\ndadosRenda.forEach(i => {\n  if (i.json.month === mesAtual) totalRenda += parseFloat(i.json.value || 0);\n});\n\n// SOMA FIXOS\ndadosFixos.forEach(i => {\n  if (i.json.month === mesAtual) {\n    const nome = i.json.category || 'Fixo';\n    const val = parseFloat(i.json.value || 0);\n    somaFixa[nome] = (somaFixa[nome] || 0) + val;\n    totalFixo += val;\n  }\n});\nfor (let c in somaFixa) listaFixosTexto += `  • ${c}: R$ ${somaFixa[c].toFixed(2)}\\n`;\n\n// SOMA DIÁRIOS\ndadosDiarios.forEach(i => {\n  if (i.json.month === mesAtual) {\n    const nome = i.json.category || 'Geral';\n    const val = parseFloat(i.json.value || 0);\n    somaDiaria[nome] = (somaDiaria[nome] || 0) + val;\n    totalDiario += val;\n  }\n});\nfor (let d in somaDiaria) listaDiariosTexto += `  • ${d}: R$ ${somaDiaria[d].toFixed(2)}\\n`;\n\nconst nomeMes = new Date().toLocaleDateString('pt-BR', { month: 'long' }).toUpperCase();\nlet report = \"\";\n\nif (comando.includes('/rel_fixos')) {\n  report = `💸 **GASTOS FIXOS - ${nomeMes}**\\n\\n${listaFixosTexto || 'Sem registros.'}\\n━━━━━━━━━━━━━━━━━━\\n💰 **TOTAL: R$ ${totalFixo.toFixed(2)}**`;\n} else if (comando.includes('/rel_renda')) {\n  report = `💰 **RELATÓRIO DE RENDA - ${nomeMes}**\\n\\nTotal: R$ ${totalRenda.toFixed(2)}`;\n} else {\n  const saldo = totalRenda - (totalFixo + totalDiario);\n  report = `📈 **RESUMO GERAL - ${nomeMes}**\\n\\n💰 **RENDA**: R$ ${totalRenda.toFixed(2)}\\n💸 **FIXOS**: R$ ${totalFixo.toFixed(2)}\\n${listaFixosTexto}🛒 **DIÁRIOS**: R$ ${totalDiario.toFixed(2)}\\n${listaDiariosTexto}\\n━━━━━━━━━━━━━━━━━━\\n📊 **SALDO: R$ ${saldo.toFixed(2)}**`;\n}\n\nreturn [{ json: { report } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1584,
+        1120
+      ],
+      "id": "86fd743d-8022-4fcc-a396-82f404e95cf6",
+      "name": "Jarvis Intelligence",
+      "executeOnce": true
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Validate User (Alex or Barbara)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate User (Alex or Barbara)": {
+      "main": [
+        [
+          {
+            "node": "Route by Command Type",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Unauthorized Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route by Command Type": {
+      "main": [
+        [
+          {
+            "node": "Parse Income Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Parse Fixed Expense Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Parse Daily Expense Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Read Income Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Parse New Category",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Initial Menu Buttons",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Read Income Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Read Income Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Income Data": {
+      "main": [
+        [
+          {
+            "node": "Store Income",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store Income": {
+      "main": [
+        [
+          {
+            "node": "Send Income Confirmation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Fixed Expense Data": {
+      "main": [
+        [
+          {
+            "node": "Store Fixed Expense",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store Fixed Expense": {
+      "main": [
+        [
+          {
+            "node": "Send Fixed Expense Confirmation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Daily Expense Data": {
+      "main": [
+        [
+          {
+            "node": "Store Daily Expense",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store Daily Expense": {
+      "main": [
+        [
+          {
+            "node": "Send Daily Expense Confirmation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Income Data": {
+      "main": [
+        [
+          {
+            "node": "Read Fixed Expenses Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Fixed Expenses Data": {
+      "main": [
+        [
+          {
+            "node": "Read Daily Expenses Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Daily Expenses Data": {
+      "main": [
+        [
+          {
+            "node": "Jarvis Intelligence",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse New Category": {
+      "main": [
+        [
+          {
+            "node": "Store New Category",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store New Category": {
+      "main": [
+        [
+          {
+            "node": "Send Category Confirmation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Jarvis Intelligence": {
+      "main": [
+        [
+          {
+            "node": "Send Financial Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "availableInMCP": false
+  },
+  "versionId": "78952ecd-8fb5-4afe-9420-9e7cbba37917",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "094277133d60709baf16ac10da2002ea27ec68dbcb518eef557fa2f96ae077ed"
+  },
+  "id": "p87v6dDZEmG2pTwO",
+  "tags": []
+}
